@@ -41,19 +41,33 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
         h2 {
-            text-align: center;
             color: #333;
+            margin: 0; /* Remove default margin */
+        }
+        #logo {
+            width: 100px; /* Set the desired width for the logo */
+            height: auto; /* Maintain aspect ratio */
         }
     </style>
 </head>
 <body>
 
 <div id="chatbox">
-    <h2>Kronos</h2> <!-- Added chatbot name header -->
+    <div class="header">
+        <h2>Kronos-Your Friendly DPS,Ynr Chatbot</h2> <!-- Chatbot name header -->
+        <img id="logo" src="logo.png" alt="Chatbot Logo"> <!-- Logo added here -->
+    </div>
     <div id="messages"></div>
     <input type="text" id="userInput" placeholder="Type your message..." />
 </div>
+
 
 <script>
     const responses = {
@@ -68,12 +82,286 @@
         "Hey there! How can I assist you today?",
         "Welcome! How can I help you?"
     ],
-    "how are you": [
-        "I'm just a computer program, but I'm here to help!",
-        "Doing well, thanks! How about you?",
-        "I'm here to assist you!",
-        "Feeling great! What about you?",
-        "I'm functioning well, thanks for asking!"
+	"hi": [
+        "Hi! What would you like to know?",
+        "Hello! How can I assist you today?",
+        "Hey there! What can I do for you?",
+        "Hi! How can I help you right now?",
+        "Hello! What’s on your mind?"
+    ],
+    "hey": [
+        "Hey! How can I help you today?",
+        "Hi! What’s up?",
+        "Hello! What can I assist you with?",
+        "Hey there! What do you need help with?",
+        "Hi! How's your day going?"
+    ],
+    "good morning": [
+        "Good morning! How can I assist you today?",
+        "Morning! What can I do for you?",
+        "Good morning! Is there anything specific you need help with?",
+        "Morning! How may I assist you today?",
+        "Good morning! What’s on your mind?"
+    ],
+    "good afternoon": [
+        "Good afternoon! How can I help you?",
+        "Afternoon! What do you need assistance with?",
+        "Good afternoon! Is there something specific you’d like to know?",
+        "Afternoon! How can I assist you today?",
+        "Good afternoon! What can I help you with?"
+    ],
+    "good evening": [
+        "Good evening! How can I assist you today?",
+        "Evening! What can I do for you?",
+        "Good evening! Is there anything you need help with?",
+        "Evening! How may I assist you?",
+        "Good evening! What’s on your mind?"
+    ],
+    "what's up": [
+        "Not much! How can I assist you?",
+        "Just here to help! What do you need?",
+        "I'm here for your questions! What's up?",
+        "Just ready to help! What can I do for you?",
+        "What's on your mind? I'm here to help!"
+    ],
+    "howdy": [
+        "Howdy! What can I do for you?",
+        "Hi there! How can I assist you today?",
+        "Howdy! What would you like to know?",
+        "Howdy! How may I help you?",
+        "Hey there! What’s on your mind?"
+    ],
+    "salutations": [
+        "Salutations! How can I assist you today?",
+        "Hello! What can I do for you?",
+        "Salutations! What do you need help with?",
+        "Greetings! How can I help you?",
+        "Salutations! What’s on your mind?"
+    ],
+    "yo": [
+        "Yo! How can I assist you?",
+        "Hey! What’s up?",
+        "Yo! What can I do for you?",
+        "Hi there! How can I help you today?",
+        "Yo! What’s on your mind?"
+    ],
+	 "location": [
+            "The Delhi Public School (DPS) in Yamunanagar is located at Bhambholi, NH 73, Jagadhri Ambala Road, Yamuna Nagar, Bhambol, Yamunanagar - 133103.",
+            "You can find DPS Yamunanagar at Bhambholi, NH 73, Jagadhri Ambala Road, Yamuna Nagar, Bhambol, Yamunanagar - 133103.",
+    ],
+        "where is dps": [
+            "DPS Yamunanagar is situated at Bhambholi, NH 73, Jagadhri Ambala Road, Yamuna Nagar, Bhambol, Yamunanagar - 133103.",
+            "You can locate Delhi Public School in Yamunanagar at Bhambholi, NH 73, Jagadhri Ambala Road.",
+    ],
+        "dps address": [
+            "The address of Delhi Public School (DPS) Yamunanagar is Bhambholi, NH 73, Jagadhri Ambala Road, Yamuna Nagar, Bhambol, Yamunanagar - 133103.",
+    ],
+        "how to reach dps": [
+            "To reach DPS Yamunanagar, head to Bhambholi on NH 73, which is on the Jagadhri Ambala Road.",
+            "You can take Jagadhri Ambala Road and follow it to reach DPS Yamunanagar located at Bhambholi.",
+    ],
+        "where is yamunanagar": [
+            "Yamunanagar is located in the state of Haryana, India. DPS is situated on the NH 73 in this city.",
+            "You can find Yamunanagar in Haryana, and Delhi Public School is located at Bhambholi on NH 73.",
+    ],
+        "what is the nearest landmark to dps": [
+            "The nearest landmark to DPS Yamunanagar is the Jagadhri Ambala Road.",
+            "You can look for local landmarks like Bhambholi when searching for DPS Yamunanagar.",
+    ],
+        "what city is dps in": [
+            "DPS Yamunanagar is in the city of Yamunanagar, Haryana.",
+            "The school is located in Yamunanagar, a city in Haryana.",
+    ],
+        "dps nearby": [
+            "Nearby, you'll find several local shops and eateries along Jagadhri Ambala Road.",
+            "The area around DPS includes various amenities and local businesses.",
+    ],
+        "dps how to go": [
+            "To go to DPS, follow NH 73 towards Jagadhri Ambala Road.",
+            "You can use public transportation or drive along NH 73 to reach DPS Yamunanagar.",
+    ],
+        "directions to dps": [
+            "For directions to DPS, follow NH 73 until you reach Bhambholi.",
+            "You can navigate to DPS using GPS by entering its full address.",
+    ],
+        "whats the address of dps": [
+            "The full address of Delhi Public School is Bhambholi, NH 73, Jagadhri Ambala Road, Yamuna Nagar, Bhambol, Yamunanagar - 133103.",
+    ],
+        "is dps near me": [
+            "If you're in Yamunanagar, DPS is easily accessible on NH 73.",
+            "Check your location against Bhambholi on NH 73 to see if DPS is nearby.",
+    ],
+        "landmarks near dps": [
+            "Local landmarks near DPS include the Jagadhri Ambala Road and Bhambholi.",
+            "You can find various shops and services along NH 73 near DPS.",
+    ],
+        "dps in haryana": [
+            "Yes, DPS Yamunanagar is located in Haryana, India.",
+            "Delhi Public School is part of the educational landscape in Haryana.",
+    ],
+        "nearest bus station to dps": [
+            "The nearest bus station is located on Jagadhri Ambala Road.",
+            "You can find bus services that stop near DPS Yamunanagar.",
+    ],
+        "what is bhambholi": [
+            "Bhambholi is the locality where DPS Yamunanagar is situated.",
+            "It is part of the NH 73 route in Yamunanagar.",
+    ],
+        "can i visit dps": [
+            "Yes, you can visit DPS Yamunanagar during school hours for inquiries.",
+            "Visitors are usually welcome at DPS, just check their schedule.",
+    ],
+        "school location": [
+            "The school location is Bhambholi, NH 73, in Yamunanagar.",
+            "DPS is positioned conveniently for local residents on Jagadhri Ambala Road.",
+    ],
+        "best way to reach dps": [
+            "The best way to reach DPS is by taking NH 73 towards Bhambholi.",
+            "Public transport and personal vehicles both work well for getting to DPS.",
+    ],
+        "transportation to dps": [
+            "You can take local buses or taxis to reach DPS Yamunanagar.",
+            "Check local transport options to find the best way to DPS.",
+    ],
+        "dps map": [
+            "You can view DPS Yamunanagar on online maps by searching for its address.",
+            "Find the location of DPS using Google Maps for detailed directions.",
+    ],
+        "what area is dps in": [
+            "DPS Yamunanagar is in the Bhambholi area along NH 73.",
+            "The school is situated in the Jagadhri Ambala Road area.",
+	],
+	 "what's your name": [
+        "I'm Kronos, your friendly chatbot!",
+        "You can call me Kronos. What's your name?",
+        "I'm known as Kronos. How can I assist you today?",
+        "I'm Kronos, here to help you with your queries!"
+    ],
+    "what can you do": [
+        "I can help you with information about our school, faculty, and more!",
+        "I provide details about our programs and respond to your queries.",
+        "I'm here to assist with any questions you have regarding our school!",
+        "I can provide information on admissions, courses, and events."
+    ],
+    "tell me about the school": [
+        "Delhi Public School, Yamuna Nagar, is known for its academic excellence!",
+        "Our school offers a blend of academics and co-curricular activities.",
+        "We focus on holistic education and personal development.",
+        "DPS Yamuna Nagar has a rich reputation in the region for quality education."
+    ],
+    "who are the teachers": [
+        "We have a dedicated team of qualified educators.",
+        "Our faculty consists of experienced teachers in various subjects.",
+        "Each teacher is committed to helping students succeed!",
+        "We have specialized educators for all levels and subjects."
+    ],
+    "what programs do you offer": [
+        "We offer programs from Pre-Play to Grade XII in various streams.",
+        "Our curriculum includes Science, Commerce, and Humanities.",
+        "We provide a range of co-curricular activities alongside academics.",
+        "Students can participate in sports, arts, and other programs."
+    ],
+    "how to apply": [
+        "You can apply through our website's admissions section.",
+        "Visit our admissions page for more information on the application process.",
+        "Feel free to ask about specific requirements for admission!",
+        "We have a straightforward application process—let me know if you need details."
+    ],
+    "tell me about the faculty": [
+        "Our faculty is composed of well-qualified professionals.",
+        "We pride ourselves on our experienced and dedicated staff.",
+        "Teachers at DPS are committed to academic excellence!",
+        "We have a mix of seasoned educators and fresh talent."
+    ],
+    "what are the school hours": [
+        "School hours are from 8:00 AM to 3:00 PM.",
+        "Classes typically run from morning to afternoon.",
+        "The school day usually starts at 8 AM.",
+        "You can find detailed timings on our website!"
+    ],
+    "how is the school environment": [
+        "We foster a positive and inclusive school environment.",
+        "Our school community is supportive and encouraging!",
+        "Students thrive in our caring and respectful atmosphere.",
+        "We emphasize a safe and friendly environment for all."
+    ],
+    "what extracurricular activities are available": [
+        "We offer a variety of clubs and sports for students.",
+        "Activities range from arts to athletics and everything in between!",
+        "Students can join music, drama, sports, and more!",
+        "Our extracurricular programs encourage well-rounded development."
+    ],
+    "how can I contact you": [
+        "You can reach us via our contact page on the website.",
+        "Feel free to send an email or call us for any queries.",
+        "Check our contact information for direct support!",
+        "You can connect with us through social media as well!"
+    ],
+    "what is the school's motto": [
+        "Our motto is 'Service Before Self'.",
+        "We believe in putting service and community first.",
+        "Our guiding principle is focused on selfless service.",
+        "Service Before Self encapsulates our ethos!"
+    ],
+    "can I visit the school": [
+        "Yes, we welcome visits! You can schedule a tour.",
+        "Feel free to arrange a visit—just let us know!",
+        "We’d love for you to come and see our campus.",
+        "Contact us to set up a convenient time for your visit."
+    ],
+    "what is the admission process": [
+        "The admission process involves filling out an application form.",
+        "You can find all admission details on our website.",
+        "We have a straightforward admissions procedure!",
+        "Contact our admissions office for specific guidance."
+    ],
+    "do you have a library": [
+        "Yes, we have a well-stocked library for students!",
+        "Our library offers a variety of resources for learning.",
+        "Students have access to both print and digital materials.",
+        "We encourage reading and research in our library."
+    ],
+    "what subjects do you teach": [
+        "We offer a range of subjects including Math, Science, and Arts.",
+        "Students can choose from various academic disciplines.",
+        "Our curriculum covers essential subjects for holistic learning.",
+        "We teach everything from languages to advanced sciences."
+    ],
+    "is there a cafeteria": [
+        "Yes, we have a cafeteria that serves healthy meals.",
+        "Students can enjoy a variety of food options at our cafeteria.",
+        "Our cafeteria promotes healthy eating habits.",
+        "Meal plans are available for students!"
+    ],
+    "do you have sports facilities": [
+        "Yes, we have excellent sports facilities for various activities.",
+        "Students can participate in sports like cricket, basketball, and more.",
+        "Our campus includes fields and courts for outdoor activities.",
+        "We encourage sportsmanship and physical fitness!"
+    ],
+    "what are the school rules": [
+        "We maintain a respectful and safe environment for all.",
+        "Students are expected to follow the code of conduct.",
+        "We emphasize punctuality, discipline, and respect.",
+        "School rules are designed to promote a positive atmosphere."
+    ],
+    "can I join the school anytime": [
+        "Admissions are typically open at specific times.",
+        "You can inquire about joining outside the regular admission period.",
+        "Check our website for the latest admission updates!",
+        "We encourage you to apply during the admission season."
+    ],
+    "how do I get updates": [
+        "You can subscribe to our newsletter for updates.",
+        "Follow us on social media for the latest news!",
+        "Our website regularly posts important announcements.",
+        "Stay connected through our communication channels!"
+    ],
+    "what is your favorite subject": [
+        "As a chatbot, I don't have preferences, but I love sharing knowledge!",
+        "I enjoy providing information about all subjects equally!",
+        "I'm here to help you learn about any subject you're interested in!",
+        "What subject would you like to know more about?"
     ],
     "bye": [
         "Goodbye! Have a great day!",
@@ -319,7 +607,320 @@
     ],
     "art exhibitions": [
         "Our students' artwork is showcased in annual exhibitions, celebrating their creativity."
-    ]
+    ],
+	"manisha singh": [
+            "Mrs. Manisha Singh is the Principal with qualifications M.Sc., M.Phil, and B.Ed."
+        ],
+        "taranpreet kaur": [
+            "Ms. Taranpreet Kaur is the Academic Co-ordinator, qualified with M.A. and B.Ed."
+        ],
+        "amit gambhir": [
+            "Mr. Amit Gambhir is the PGT – Maths, holding M.Sc. and M.Ed."
+        ],
+        "tarun kalra": [
+            "Mr. Tarun Kalra is the PGT – Physics and has an M.Tech. degree."
+        ],
+        "taninder kaur": [
+            "Ms. Taninder Kaur is the PGT – Computer Science with qualifications B.Com., M.C.A, and B.Ed."
+        ],
+        "pritpal singh": [
+            "Mr. Pritpal Singh is the PGT – Music, qualified with M.A., Sangeet Bhushan Diploma."
+        ],
+        "shivali": [
+            "Ms. Shivali teaches PGT – History/Pol Science with M.A., Pol Sci, History, and M.Ed."
+        ],
+        "manoj kumar": [
+            "Mr. Manoj Kumar is the PGT – Accounts & Business Studies, with qualifications M.Com, M.Phil, and B.Ed."
+        ],
+        "rajnish kalia": [
+            "Mr. Rajnish Kalia is the PGT – Physical Education, qualified with M.P.Ed. and M.Phil."
+        ],
+        "kamalpreet kaur": [
+            "Ms. Kamalpreet Kaur teaches PGT – Chemistry, holding M.Sc. in Chemistry and B.Ed."
+        ],
+        "dharmesh kathuria": [
+            "Mr. Dharmesh Kathuria is the PGT – Biology with qualifications M.Sc. and B.Ed."
+        ],
+        "manish mehta": [
+            "Mr. Manish Mehta is the PGT – Chemistry, qualified with M.Sc. and B.Ed."
+        ],
+        "sachin khurana": [
+            "Mr. Sachin Khurana teaches PGT – Economics, holding M.Com, MBA, and B.Ed."
+        ],
+        "sukhvinder singh": [
+            "Mr. Sukhvinder Singh is the PGT – Fine Arts, qualified with M.A. in Fine Arts and Diploma."
+        ],
+        "preeti sachdeva": [
+            "Ms. Preeti Sachdeva is the TGT – Maths/Science, holding M.A. and B.Ed."
+        ],
+        "shivalika batra": [
+            "Ms. Shivalika Batra is the TGT – Science with qualifications M.Sc. and B.Ed."
+        ],
+        "shiv kumar sharma": [
+            "Mr. Shiv Kumar Sharma teaches TGT – Maths/Science, holding B.Sc. and B.Ed."
+        ],
+        "parul rajpal": [
+            "Ms. Parul Rajpal is the TGT – Maths with B.Sc. and B.Ed."
+        ],
+        "minakshi jaiswal": [
+            "Ms. Minakshi Jaiswal is the TGT – English with qualifications M.A., M.Phil, Ph.D., and B.Ed."
+        ],
+        "priya ahlawat": [
+            "Ms. Priya Ahlawat teaches TGT – Science, holding M.Sc., M.Tech, and B.Ed."
+        ],
+        "nitika gupta": [
+            "Ms. Nitika Gupta is the TGT – English/S.Sc., qualified with M.A. and B.Ed."
+        ],
+        "monika sangwan": [
+            "Ms. Monika Sangwan is the TGT – Science/ATL Inch with M.Tech."
+        ],
+        "paromita narang": [
+            "Ms. Paromita Narang is the TGT – Social Science with B.A. and B.Ed."
+        ],
+        "monika gupta": [
+            "Ms. Monika Gupta teaches TGT – Maths/Computer with qualifications B.Tech and B.Ed."
+        ],
+        "deepika yadav": [
+            "Ms. Deepika Yadav is the TGT – Maths/Science, holding M.Sc. and M.Ed."
+        ],
+        "jyoti sindwani": [
+            "Ms. Jyoti Sindwani is the TGT – Hindi, qualified with M.A. in Hindi and English and B.Ed."
+        ],
+        "pooja bobal": [
+            "Ms. Pooja Bobal is the TGT – S.Sc. with M.A. and B.Ed."
+        ],
+        "ritu khurana": [
+            "Ms. Ritu Khurana is the TGT – S.Sc. with M.A. (Eco) and B.Ed."
+        ],
+        "pooja rani": [
+            "Ms. Pooja Rani teaches TGT – Hindi, holding M.A. and B.Ed."
+        ],
+        "isha bhatia": [
+            "Ms. Isha Bhatia is the Librarian with M.Lib. and Diploma."
+        ],
+        "tanu ahuja": [
+            "Ms. Tanu Ahuja is a Special Educator with M.A., M.Phil, and B.Ed."
+        ],
+        "parul tyagi": [
+            "Ms. Parul Tyagi is the Counsellor with M.A. in Psychology."
+        ],
+        "poonam bala sharma": [
+            "Ms. Poonam Bala Sharma is the PRT – Punjabi with M.A. and B.Ed."
+        ],
+        "vijay kumar sharma": [
+            "Mr. Vijay Kumar Sharma is the PRT – Physical Education with B.A. and CC Yoga."
+        ],
+        "surjeet beniwal": [
+            "Ms. Surjeet Beniwal teaches PRT – General Teacher with M.Sc. and B.Ed."
+        ],
+        "vandana soni": [
+            "Ms. Vandana Soni is the PRT – General Teacher with M.A. and B.Ed."
+        ],
+        "priyanka arora": [
+            "Ms. Priyanka Arora is the PRT – Art Education with M.A., B.Ed., and Diploma."
+        ],
+        "manu sachdeva": [
+            "Ms. Manu Sachdeva teaches PRT – General Teacher with M.Com. and B.Ed."
+        ],
+        "rita rani": [
+            "Ms. Rita Rani is the PRT – General Teacher with M.A. in Hindi, B.Ed., and PGDCA."
+        ],
+        "manu kalra": [
+            "Ms. Manu Kalra is the PRT – General Teacher with B.Com. and B.Ed."
+        ],
+        "monika baljotra": [
+            "Ms. Monika Baljotra is the PRT – General Teacher with M.A. in Kathak."
+        ],
+        "amandeep kaur": [
+            "Ms. Amandeep Kaur is the PRT – General Teacher with M.A. and B.Ed."
+        ],
+        "vandana jakhmola": [
+            "Ms. Vandana Jakhmola is the PRT – Maths Teacher with M.Sc. and B.Ed."
+        ],
+        "swati garg": [
+            "Ms. Swati Garg teaches PRT – General Teacher with M.Tech. and B.Ed."
+        ],
+        "hardeep kaur": [
+            "Ms. Hardeep Kaur is the PRT – General Teacher with B.Sc. and B.Ed."
+        ],
+        "poonam sharma": [
+            "Ms. Poonam Sharma is the PRT – General Teacher with M.A. and B.Ed."
+        ],
+        "sharu sharma": [
+            "Ms. Sharu Sharma teaches PRT – General Teacher with M.Sc. and B.Ed."
+        ],
+        "ranju sharma": [
+            "Ms. Ranju Sharma is the PRT – General Teacher with B.A. and B.Ed."
+        ],
+        "shivani mittal": [
+            "Ms. Shivani Mittal is the PRT – General Teacher with B.A. and B.Ed."
+        ],
+        "prachi abhishake gupta": [
+            "Ms. Prachi Abhishake Gupta teaches PRT – Pre-Primary with B.Com. and B.Ed."
+        ],
+        "varinder kaur": [
+            "Ms. Varinder Kaur is the PRT – Pre-Primary with M.Com. and NTT."
+        ],
+        "megha sharma": [
+            "Ms. Megha Sharma is the PRT – Pre-Primary with B.A. and B.Ed."
+        ],
+        "rashi dhanda": [
+            "Ms. Rashi Dhanda teaches PRT – Pre-Primary with B.Com., MBA, NTT, and B.Ed."
+        ],
+        "pooja gupta": [
+            "Ms. Pooja Gupta is the PRT – Social Science with M.Com. and B.Ed."
+        ],
+        "sonia sharma": [
+            "Ms. Sonia Sharma is the Dance Teacher with M.A. (Gold Medalist)."
+        ],
+        "deepak bajaj": [
+            "Mr. Deepak Bajaj is the Table Tennis Coach with B.P.Ed."
+        ],
+        "gourav sobti": [
+            "Mr. Gourav Sobti is the Skating Coach with B.A. in Physical Education."
+        ],
+        "ashish": [
+            "Mr. Ashish is the Swimming Coach with B.A. in Physical Education."
+        ],
+		"board of members": [
+            "Mr. Kaushik Dutta - Chairperson",
+            "Ms. Vrinda Swarup - Vice Chairperson",
+            "Mr. Ram Niwas Garg - Chairman BET, Pro Vice Chairman",
+            "Mr. Uday Kumar Verma - Member",
+            "Ms. Bharathi Sivaswami Sihag - Member",
+            "Mr. S. Venkat Narayan - Member",
+            "Mr. Rajnish Bansal - Member",
+            "Mr. Vikas Bansal - Member",
+            "Mrs. Manisha Singh - Member & Principal"
+        ],
+		"who is on the board": [
+            "The board members are: Mr. Kaushik Dutta, Ms. Vrinda Swarup, Mr. Ram Niwas Garg, Mr. Uday Kumar Verma, Ms. Bharathi Sivaswami Sihag, Mr. S. Venkat Narayan, Mr. Rajnish Bansal, Mr. Vikas Bansal, and Mrs. Manisha Singh."
+        ],
+        "board members": [
+            "The current board includes Mr. Kaushik Dutta, Ms. Vrinda Swarup, Mr. Ram Niwas Garg, and others."
+        ],
+        "list of board members": [
+            "Sure! Here are the board members: Mr. Kaushik Dutta, Ms. Vrinda Swarup, Mr. Ram Niwas Garg, Mr. Uday Kumar Verma, Ms. Bharathi Sivaswami Sihag, Mr. S. Venkat Narayan, Mr. Rajnish Bansal, Mr. Vikas Bansal, and Mrs. Manisha Singh."
+        ],
+        "who are the members": [
+            "The board members include: Mr. Kaushik Dutta, Ms. Vrinda Swarup, Mr. Ram Niwas Garg, and others."
+        ],
+        "members of the board": [
+            "Members of the board are Mr. Kaushik Dutta, Ms. Vrinda Swarup, Mr. Ram Niwas Garg, and others."
+        ],
+        "board structure": [
+            "The board structure includes Mr. Kaushik Dutta as Chairperson and Ms. Vrinda Swarup as Vice Chairperson."
+        ],
+        "executive members": [
+            "The executive members include Mr. Ram Niwas Garg and other key individuals."
+        ],
+        "who leads the board": [
+            "The board is led by Mr. Kaushik Dutta as the Chairperson."
+        ],
+        "details of board members": [
+            "The board consists of various members including Mr. Kaushik Dutta and Ms. Vrinda Swarup."
+        ],
+		 "about the school": [
+            "Delhi Public School-Yamunanagar holds a distinguished name in co-educational, day-cum-residential schooling in Yamunanagar. Established in 2007 and affiliated to CBSE, it is a global institution that runs from Pre-Play to Grade XII (Science, Commerce, and Humanities) with the motto: 'Service Before Self'.",
+            "Our vision is simple – great teaching combined with a strong focus on students’ aspirations, achievement, and personal development. We believe this leads to great outcomes and life chances for our young students, fostering respect for all students and their parents.",
+            "The school has consistently produced the best CBSE results in the region, and our alumni are well-established individuals. We encourage our students to explore every aspect of learning and participate in various scholastic and co-scholastic activities.",
+            "As Margaret Mead said, 'Children must be taught how to think, not what to think'. We aim to accomplish our vision through a truly holistic education."
+        ],
+		"school values": [
+            "We believe in fostering a culture of respect, integrity, and excellence among our students.",
+            "Our core values include compassion, responsibility, and a commitment to lifelong learning.",
+            "We emphasize the importance of diversity and inclusivity within our school community.",
+            "Service to others is a fundamental principle that guides our actions and decisions.",
+            "Our goal is to nurture well-rounded individuals who contribute positively to society."
+        ],
+
+        "faculty and staff": [
+            "Our dedicated faculty is composed of highly qualified and experienced professionals.",
+            "Teachers at DPS Yamunanagar are committed to providing personalized attention to each student.",
+            "We regularly invest in professional development to enhance our educators' skills.",
+            "Our staff members are passionate about fostering a love for learning in students.",
+            "The school encourages collaboration among faculty to create a supportive learning environment."
+        ],
+
+        "community engagement": [
+            "DPS Yamunanagar actively participates in community service projects throughout the year.",
+            "We partner with local organizations to provide students with real-world learning experiences.",
+            "Our school organizes events to raise awareness and support various social causes.",
+            "We encourage students to take part in initiatives that promote environmental sustainability.",
+            "Community involvement is an integral part of our curriculum, enriching students' education."
+        ],
+
+        "technology in education": [
+            "We integrate technology into our teaching methods to enhance student learning.",
+            "Our classrooms are equipped with smart boards and digital resources to support interactive learning.",
+            "Students have access to online learning platforms that complement their studies.",
+            "We promote digital literacy and responsible internet usage among our students.",
+            "The school offers coding and robotics programs to prepare students for future careers."
+        ],
+
+        "school events": [
+            "DPS Yamunanagar hosts annual functions, sports days, and cultural events to celebrate student achievements.",
+            "Our events provide opportunities for students to showcase their talents and skills.",
+            "We organize workshops and guest lectures to inspire and motivate our students.",
+            "The school community comes together for celebrations like Independence Day and Republic Day.",
+            "Parent and student participation is encouraged in all school events, fostering community spirit."
+        ],
+
+        "health and wellness": [
+            "We prioritize the health and well-being of our students through various programs.",
+            "Our school has a dedicated health center to address students' medical needs.",
+            "We offer counseling services to support students' mental health and emotional well-being.",
+            "Regular health check-ups and workshops on nutrition are conducted for students.",
+            "Physical education is an essential part of our curriculum to promote fitness."
+        ],
+
+        "student support services": [
+            "We provide academic support for students who may need extra help in their studies.",
+            "Our school has a robust mentoring program that pairs students with experienced teachers.",
+            "We offer resources for students with special educational needs to ensure inclusivity.",
+            "Counseling services are available for students facing personal or academic challenges.",
+            "Our goal is to create a supportive environment where every student can thrive."
+        ],
+
+        "environmental initiatives": [
+            "DPS Yamunanagar is committed to sustainability and environmental responsibility.",
+            "We have implemented recycling programs and initiatives to reduce our carbon footprint.",
+            "Students participate in tree planting activities and environmental awareness campaigns.",
+            "Our school encourages eco-friendly practices among students and staff.",
+            "We integrate environmental education into our curriculum to raise awareness."
+        ],
+
+        "global perspective": [
+            "Our curriculum includes international perspectives to prepare students for a globalized world.",
+            "We promote cultural exchange programs that broaden students' horizons.",
+            "Students learn about global issues and are encouraged to think critically about them.",
+            "We celebrate diversity and promote understanding of different cultures within our school community.",
+            "Our partnerships with schools abroad provide enriching learning experiences for students."
+        ],
+		"school overview": [
+            "Delhi Public School, Yamuna Nagar has created a niche for itself as one of the best residential schools in North India. It provides an ideal platform for students to ingrain a global outlook and deep-rooted value system.",
+            "At DPS Yamuna Nagar, we view school as a perfect blend of academic excellence, technical skills, sports, fine arts, music, and theatre. We invite students to explore the world of intellectual, emotional, and spiritual learning.",
+            "We are deeply committed to the holistic education of our learners, focusing not only on educational skills but also on their non-cognitive development.",
+            "Our team comprises well-qualified and experienced teachers and instructors, supported by an experienced administrative staff. The school campus features a technologically advanced academic wing, boarding houses, ample sports facilities, medical care, and state-of-the-art labs, all spread over a well-planned campus.",
+            "Our curriculum includes innovative opportunities outside of traditional academics, guided by a profound educational philosophy that connects high academic expectations to transformative personal growth.",
+            "Residential life is enjoyed in a compassionate, diverse, multi-cultural community with a strong family atmosphere. We provide real opportunities for students to make a difference."
+        ],
+
+        "mission statement": [
+            "We aim to be a center of excellence in education by nurturing our privileged youth in the essence of enlightened leadership and citizenship."
+        ],
+
+        "vision statement": [
+            "Our school aims to provide value-based education using innovative teaching and learning methods, helping students grow into intellectually aware and responsible individuals who strengthen society."
+        ],
+
+        "core values": [
+            "An unwavering belief in every student’s potential: We believe every student holds the innate potential to achieve their goals and succeed.",
+            "A desire for excellence: Our success is driven by a commitment to learn, grow, and strive for excellence. Continuous improvement is emphasized at every level.",
+            "Personal responsibility: We create operational and sustainable solutions, empowering students to navigate challenges themselves.",
+            "Respect for others in the community: We value everyone, ensuring students respect others and recognizing their voices in our work.",
+            "Inclusion of all stakeholders: We involve teachers and all stakeholders in decision-making, fostering skilled communities of practice."
+        ],
     };
 
     function normalizeInput(input) {
@@ -347,7 +948,7 @@
             }
             addMessage(`You: ${userInput}`, "user");
             const response = getResponse(userInput);
-            addMessage(`Chatbot: ${response}`, "bot");
+            addMessage(`Kronos: ${response}`, "bot");
             this.value = '';
         }
     });
