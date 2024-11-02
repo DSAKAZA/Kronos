@@ -10,17 +10,17 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
+            position: relative; /* Make body a positioned element */
         }
+        
         #chatbox {
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: white; /* Background for chatbox */
+            border: 1px solid #ccc; /* Border for chatbox */
+            border-radius: 5px; /* Rounded corners for chatbox */
+            padding: 20px; /* Padding inside the chatbox */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
         }
+
         #messages {
             max-height: 400px;
             overflow-y: auto;
@@ -30,30 +30,50 @@
             border-radius: 5px;
             background: #eaeaea;
         }
+        
         .message {
             margin: 10px 0;
         }
+        
         .user { color: blue; }
         .bot { color: green; }
+        
         input[type="text"] {
             width: calc(100% - 22px);
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
+        
         h2 {
             color: #333;
             margin: 0; /* Remove default margin */
         }
+        
         #logo {
             width: 100px; /* Set the desired width for the logo */
             height: auto; /* Maintain aspect ratio */
+        }
+        
+        /* Styles for developer name */
+        #developer {
+            position: fixed; /* Use fixed positioning for visibility */
+            bottom: 10px;
+            right: 20px;
+            font-size: 14px; /* Make it slightly larger for testing */
+            color: black; /* Change color to red for visibility */
+            z-index: 10; /* Ensure it's above other content */
+            background: rgba(255, 255, 255, 1); /* Solid background for testing */
+            padding: 5px; /* Add some padding */
+            border-radius: 3px; /* Optional: add rounded corners */
+            border: 1px solid black; /* Add a border for more visibility */
         }
     </style>
 </head>
@@ -61,27 +81,30 @@
 
 <div id="chatbox">
     <div class="header">
-        <h2>Kronos-Your Friendly DPS,Ynr Chatbot</h2> <!-- Chatbot name header -->
+        <h2>Kronos-Your Friendly DPS, Ynr Chatbot</h2> <!-- Chatbot name header -->
         <img id="logo" src="logo.png" alt="Chatbot Logo"> <!-- Logo added here -->
     </div>
     <div id="messages"></div>
     <input type="text" id="userInput" placeholder="Type your message..." />
 </div>
 
+<!-- Developer name display -->
+<div id="developer">Created by [Armaan Nagra]</div> <!-- Replace [Your Name] with your actual name -->
 
 <script>
     const responses = {
         "hello": [
-        "Hello! How can I assist you today?",
-        "Hi there! What can I do for you?",
-        "Greetings! How may I help you?",
-        "Hey! It's great to see you here!",
-        "Hello! What questions do you have for me?",
-        "Hi! I'm here to help you with anything you need.",
-        "Hello! I'm excited to chat with you!",
-        "Hey there! How can I assist you today?",
-        "Welcome! How can I help you?"
-    ],
+            "Hello! How can I assist you today?",
+            "Hi there! What can I do for you?",
+            "Greetings! How may I help you?",
+            "Hey! It's great to see you here!",
+            "Hello! What questions do you have for me?",
+            "Hi! I'm here to help you with anything you need.",
+            "Hello! I'm excited to chat with you!",
+            "Hey there! How can I assist you today?",
+            "Welcome! How can I help you?"
+        ],
+		
 	"hi": [
         "Hi! What would you like to know?",
         "Hello! How can I assist you today?",
@@ -920,6 +943,42 @@
             "Personal responsibility: We create operational and sustainable solutions, empowering students to navigate challenges themselves.",
             "Respect for others in the community: We value everyone, ensuring students respect others and recognizing their voices in our work.",
             "Inclusion of all stakeholders: We involve teachers and all stakeholders in decision-making, fostering skilled communities of practice."
+        ],
+		"programmer": [
+            "Armaan Nagra is a talented programmer. Want to learn more about his skills?",
+            "This bot showcases the programming skills of Armaan Nagra. Any questions?",
+            "Curious about Armaan Nagra's programming projects? I'm here to help!",
+            "Armaan Nagra loves solving coding challenges. What would you like to know?"
+        ],
+        "engineer": [
+            "Armaan Nagra is an engineer with a passion for tech. How can I assist you?",
+            "Want to know more about the engineering principles behind this bot? Ask away!",
+            "This chatbot is engineered by Armaan Nagra. Any inquiries about the process?"
+        ],
+        "designer": [
+            "Armaan Nagra also has a flair for design. Interested in his design philosophy?",
+            "This chatbot features a user-friendly design crafted by Armaan Nagra. What do you think?",
+            "Curious about the design elements in this chatbot? Armaan Nagra can share insights!"
+        ],
+        "creator": [
+            "Armaan Nagra is the creative mind behind this chatbot. What do you want to know?",
+            "Meet the creator, Armaan Nagra! Have any questions about his creations?",
+            "As the creator, Armaan Nagra is here to help you. What’s on your mind?"
+        ],
+        "coder": [
+            "Armaan Nagra is an experienced coder. What would you like to ask?",
+            "Interested in coding? Armaan Nagra has plenty of tips! What can I help with?",
+            "This bot is a product of Armaan Nagra's coding expertise. Any questions?"
+        ],
+        "developer advocate": [
+            "Armaan Nagra is also a developer advocate, promoting great coding practices. Want to know more?",
+            "As a developer advocate, Armaan Nagra shares knowledge and resources. What can I assist you with?",
+            "Curious about developer advocacy? Armaan Nagra is your go-to expert!"
+        ],
+        "innovator": [
+            "Armaan Nagra is known for his innovative approaches in tech. Interested in his ideas?",
+            "Want to explore some innovative solutions by Armaan Nagra? I'm here to help!",
+            "As an innovator, Armaan Nagra loves brainstorming new ideas. What would you like to discuss?"
         ],
     };
 
